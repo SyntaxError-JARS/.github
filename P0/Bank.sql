@@ -1,11 +1,10 @@
 
-drop table customer;
-drop table custaccounts;
-drop table transactionhis;
-drop table accountinfo;
+--drop table customer;
+--drop table custaccounts;
+--drop table transactionhis;
+--drop table accountinfo;
 
 --create a table
-
 create table customer (
 	id serial primary key, -- id is set to primary so the different tables can have the same key
 	first varchar(50) not null, -- first name of customer
@@ -34,7 +33,7 @@ create table custaccounts (
 	accountnum varchar(12) unique,
 	accounttype varchar(20) not null,
 	balance decimal(8,2),
-	--constraint fk_custaccounts foreign key(email) references customer(email)
+	constraint fk_custaccounts foreign key(email) references customer(email)
 ); 
 
 
@@ -54,34 +53,28 @@ insert into custaccounts (email, accounttype, accountnum, balance) values ('tw@g
 --create table for bank to find customers based on 
 create table accountinfo (
 	accountnum varchar(50) primary key,
+	address VARCHAR(50),
 	mobile varchar(50) not null,
-	social varchar(50) not null
-	--constraint fk_accountinfo foreign key(accountnum) references custaccounts(email)
+	social varchar(50) not null,
+	constraint fk_accountinfo foreign key(accountnum) references custaccounts(email)
 	);
 
 
-insert into accountinfo (accountnum, mobile, social) values ('119688789675', '', '');
-insert into accountinfo (accountnum, mobile, social) values ('451516045113', '', '');
-insert into accountinfo (accountnum, mobile, social) values ('937304787632', '', '');
-insert into accountinfo (accountnum, mobile, social) values ('473983438343', '', '');
-insert into accountinfo (accountnum, mobile, social) values ('421651922953', '', '');
-insert into accountinfo (accountnum, mobile, social) values ('847083053878', '', '');
-insert into accountinfo (accountnum, mobile, social) values ('030050815842', '', '');
-insert into accountinfo (accountnum, mobile, social) values ('017444168891', '', '');
-insert into accountinfo (accountnum, mobile, social) values ('687137385332', '', '');
-insert into accountinfo (accountnum, mobile, social) values ('863463416785', '', '');
+insert into accountinfo (accountnum, address, mobile, social) values (''119688789675', '', '', '');
+insert into accountinfo (accountnum, address, mobile, social) values (''451516045113', '', '', '');
+insert into accountinfo (accountnum, address, mobile, social) values (''937304787632', '', '', '');
+insert into accountinfo (accountnum, address, mobile, social) values (''473983438343', '', '', '');
+insert into accountinfo (accountnum, address, mobile, social) values (''421651922953', '', '', '');
+insert into accountinfo (accountnum, address, mobile, social) values (''847083053878', '', '', '');
+insert into accountinfo (accountnum, address, mobile, social) values (''030050815842', '', '', '');
+insert into accountinfo (accountnum, address, mobile, social) values (''017444168891', '', '', '');
+insert into accountinfo (accountnum, address, mobile, social values (''687137385332', '', '', '');
+insert into accountinfo (accountnum, address, mobile, social) values (''863463416785', '', '', '');
 
 ---
 create table transactionhis (
 	transactionid varchar(10) primary key,
 	recentactivity varchar(80) not null,
 	monthlystatements VARCHAR(12) not null,
-	--constraint fk_transactionhis foreign key(transactionid) references accountinfo(accountnum)
+	constraint fk_transactionhis foreign key(transactionid) references accountinfo(accountnum)
 );
-
-select * from accountinfo;
-
-
---alter table <>
---add constraints <fk_>
---foreign key() references ()
