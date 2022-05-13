@@ -15,12 +15,12 @@ import java.io.IOException;
 
 // @WebServlet("/auth") // this requires a default No-Args constructor
 public class AuthServlet extends HttpServlet {
-    private final TrainerServices trainerServices;
+    private final AccountOwnerServices accountownerServices;
     // ObjectMapper provided by jackson
     private final ObjectMapper mapper;
 
-    public AuthServlet(TrainerServices trainerServices, ObjectMapper mapper){
-        this.trainerServices = trainerServices;
+    public AuthServlet(AccountOwnerServices accountownerServices, ObjectMapper mapper){
+        this.accountownerServices = accountownerServices;
         this.mapper = mapper;
     }
 
@@ -29,13 +29,13 @@ public class AuthServlet extends HttpServlet {
 
         try {
             // The jackson library has the ObjectMapper with methods to readValues from the HTTPRequest body as an input stream and assign it to the class
-            // Trainer reqTrainer = mapper.readValue(req.getInputStream(), Trainer.class);
+            // Account Owner reqAccountOwner = mapper.readValue(req.getInputStream(), AccountOwner.class);
             LoginCreds loginCreds = mapper.readValue(req.getInputStream(), LoginCreds.class);
 
-            Trainer authTrainer = trainerServices.authenticateTrainer(loginCreds.getEmail(), loginCreds.getPassword());
+            AccountOwner authAccountOwner = accountownerServices.authenticateAccountOwner(loginCreds.getEmail(), loginCreds.getPassword());
 
             HttpSession httpSession = req.getSession(true);
-            httpSession.setAttribute("authTrainer", authTrainer);
+            httpSession.setAttribute("authAccountOwner", authAccountOwner);
 
             resp.getWriter().write("You have successfully logged in!");
         } catch (AuthenticationException | InvalidRequestException e){

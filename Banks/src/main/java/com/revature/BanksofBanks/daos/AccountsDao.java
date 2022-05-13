@@ -19,7 +19,7 @@ import java.util.List;
         public Accounts create(Accounts newAccounts) {
             try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
 
-                String sql = "insert into pokemon values (default, ?, ?, ?, ?, ?, ?)";
+                String sql = "insert into accounts values (default, ?, ?, ?, ?, ?, ?)";
 
                 PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -50,7 +50,7 @@ import java.util.List;
 
             try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 
-                String sql = "select * from account";
+                String sql = "select * from accounts";
                 Statement s = conn.createStatement();
 
                 ResultSet rs =s.executeQuery(sql);
@@ -58,7 +58,7 @@ import java.util.List;
                 while (rs.next()) {
                     Accounts account = new Accounts();
 
-                    accounts.setPokemonName(rs.getString("pokemon_name"));
+                    accounts.setAccountsName(rs.getString("pokemon_name"));
                     accounts.setHp(rs.getInt("hp"));
                     accounts.setAtk(rs.getInt("atk"));
                     accounts.setElementType(rs.getInt("element_type"));

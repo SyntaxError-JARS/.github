@@ -24,10 +24,10 @@ public class AppState {
         logger.log("2. Generating instance of AppState.");
         isRunning = true;
         BufferedReader terminalReader = new BufferedReader(new InputStreamReader(System.in));
-        AccountOwerServices accountownerServices = new TrainerServices(new TrainerDao());
+        AccountOwnerServices accountownerServices = new AccountOwnerServices(new AccountOwnerDao());
 
         // TODO: Why are we doing all of this!?
-        this.welcomeMenu = new WelcomeMenu(terminalReader, trainerServices, logger);
+        this.welcomeMenu = new WelcomeMenu(terminalReader, accountownerServices, logger);
         this.registerMenu = new RegisterMenu(terminalReader);
     }
 
@@ -47,4 +47,4 @@ public class AppState {
         isRunning = false;
     }
 
-}
+}ex

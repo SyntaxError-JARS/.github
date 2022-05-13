@@ -16,25 +16,25 @@ import static com.revature.BanksofBanks.web.servlets.Authable.checkAuth;
 
 public class AccountsServlet extends HttpServlet implements Authable {
 
-    private final PokemonServices pokemonServices;
+    private final AccountsServices accountsServices;
     private final ObjectMapper mapper;
 
-    public PokemonServlet(PokemonServices pokemonServices, ObjectMapper mapper) {
-        this.pokemonServices = pokemonServices;
+    public AccountsServlet(AccountsServices accountsServices, ObjectMapper mapper) {
+        this.accountsServices = accountsServices;
         this.mapper = mapper;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if(req.getParameter("id") != null){
-            Pokemon pokemon = pokemonServices.readById(req.getParameter("id"));
-            String payload = mapper.writeValueAsString(pokemon);
+            Accounts accounts = accountsServices.readById(req.getParameter("id"));
+            String payload = mapper.writeValueAsString(accounts);
             resp.getWriter().write(payload);
             return;
         }
 
-        List<Pokemon> pokemons = pokemonServices.readAll();
-        String payload = mapper.writeValueAsString(pokemons);
+        List<Accounts> accounts = accountsServices.readAll();
+        String payload = mapper.writeValueAsString(accounts);
 
         resp.getWriter().write(payload);
 
@@ -44,13 +44,13 @@ public class AccountsServlet extends HttpServlet implements Authable {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         if(!checkAuth(req, resp)) return;
-        // TODO: Let's create a pokemon
-        Pokemon newPokemon = mapper.readValue(req.getInputStream(), Pokemon.class); // from JSON to Java Object (Pokemon)
-        Pokemon persistedPokemon = pokemonServices.create(newPokemon);
+        // TODO: Let's create an account
+        Accounts newAccounts = mapper.readValue(req.getInputStream(), Accounts.class); // from JSON to Java Object (Accounts)
+        Accounts persistedAccounts = accountsServices.create(newAccounts);
 
-        String payload = mapper.writeValueAsString(persistedPokemon); // Mapping from Java Object (Pokemon) to JSON
+        String payload = mapper.writeValueAsString(persistedAccounts); // Mapping from Java Object (Accounts) to JSON
 
-        resp.getWriter().write("Persisted the provided pokemon as show below \n");
+        resp.getWriter().write("Persisted the provided account as show below \n");
         resp.getWriter().write(payload);
         resp.setStatus(201);
     }

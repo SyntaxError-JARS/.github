@@ -28,30 +28,30 @@ public class ContextLoaderListener implements ServletContextListener {
         ObjectMapper mapper = new ObjectMapper();
 
         // Instantiate all Daos first
-        TrainerDao trainerDao = new TrainerDao();
+        AccoutOwnerDao accoutownerDao = new AccountOwnerDao();
         ElementTypeDao elementTypeDao = new ElementTypeDao();
-        AbilitiesDao abilitiesDao = new AbilitiesDao();
-        PokemonDao pokemonDao = new PokemonDao();
+        TransactionsDao transactionsDao = new TransactionsDao();
+        AccountsDao pokemonDao = new AccountsDao();
 
-        // Instantiate and intialize the services with their dao dependency
-        TrainerServices trainerServices = new TrainerServices(trainerDao);
+        // Instantiate and initialize the services with their dao dependency
+        AccountOwnerServices accountownerServices = new AccountOwnerServices(accountownerDao);
         ElementTypeServices elementTypeServices = new ElementTypeServices(elementTypeDao);
-        AbilitiesServices abilitiesServices = new AbilitiesServices(elementTypeDao, abilitiesDao);
-        PokemonServices pokemonServices = new PokemonServices(pokemonDao,elementTypeDao,abilitiesDao);
+        TransactionsServices transactionsServices = new AbilitiesServices(elementTypeDao, transactionsDao);
+        AccountsServices accountsServices = new AccountsServices(accountsDao,elementTypeDao,transactionsDao);
 
 
-        AuthServlet authServlet = new AuthServlet(trainerServices, mapper);
-        TrainerServlet trainerServlet = new TrainerServlet(trainerServices, mapper);
+        AuthServlet authServlet = new AuthServlet(accountownerServices, mapper);
+        AccountOwnerServlet accountownerServlet = new AccountOwnerServlet(accountownerServices, mapper);
         ElementTypeServlet elementTypeServlet = new ElementTypeServlet(elementTypeServices, mapper);
-        AbilitiesServlet abilitiesServlet = new AbilitiesServlet(abilitiesServices, mapper);
-        PokemonServlet pokemonServlet = new PokemonServlet(pokemonServices, mapper);
+        TransactionsServlet transactionsServlet = new TransactionsServlet(transactionsServices, mapper);
+        AccountsServlet accountsServlet = new AccountsServlet(accountsServices, mapper);
 
         ServletContext context = sce.getServletContext();
         context.addServlet("AuthServlet", authServlet).addMapping("/auth");
-        context.addServlet("TrainerServlet", trainerServlet).addMapping("/trainers/*");
+        context.addServlet("AccountOwnerServlet", accountownerServlet).addMapping("/accountowner/*");
         context.addServlet("ElementTypeServlet", elementTypeServlet).addMapping("/elementTypes/*");
-        context.addServlet("AbilitiesServlet", abilitiesServlet).addMapping("/abilities/*");
-        context.addServlet("PokemonServlet", pokemonServlet).addMapping("/pokemon/*");
+        context.addServlet("TransactionsServlet", transactionsServlet).addMapping("/transactions/*");
+        context.addServlet("AccountsServlet", accountsServlet).addMapping("/accounts/*");
 
     }
 

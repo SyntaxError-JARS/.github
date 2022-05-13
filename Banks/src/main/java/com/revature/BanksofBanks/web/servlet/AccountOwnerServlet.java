@@ -20,12 +20,12 @@ import static com.revature.BanksofBanks.web.servlets.Authable.checkAuth;
 
 
 public class AccountOwnerServlet extends HttpServlet implements Authable {
-    private final TrainerServices trainerServices;
+    private final AccountOwnerServices accountownerServices;
     private final ObjectMapper mapper;
     private final Logger logger = Logger.getLogger();
 
-    public TrainerServlet(TrainerServices trainerServices, ObjectMapper mapper) {
-        this.trainerServices = trainerServices;
+    public AccountOwnerServlet(AccountOwnerServices accountownerServices, ObjectMapper mapper) {
+        this.accountownerServices = accoutownerServices;
         this.mapper = mapper;
     }
 
@@ -39,17 +39,17 @@ public class AccountOwnerServlet extends HttpServlet implements Authable {
 //        System.out.println(pathParts[0] + pathParts[1] + pathParts[2]);
 
 
-        // Handling the query params in the /trainers?id=x&email=y
+        // Handling the query params in the /accountowner?id=x&email=y
         if(req.getParameter("id") != null && req.getParameter("email") != null){
             resp.getWriter().write("Hey you have the follow id and email " + req.getParameter("id") + " " + req.getParameter("email") );
             return;
         }
 
-        // Handling the query params in the endpoint /trainers?id=x
+        // Handling the query params in the endpoint /acountowner?id=x
         if(req.getParameter("id") != null){
-            Trainer trainer;
+            AccountOwner accountowner;
             try {
-                trainer = trainerServices.readById(req.getParameter("id")); // EVERY PARAMETER RETURN FROM A URL IS A STRING
+                accountowner = accountownerServices.readById(req.getParameter("id")); // EVERY PARAMETER RETURN FROM A URL IS A STRING
             } catch (ResourcePersistanceException e){
                 logger.warn(e.getMessage());
                 resp.setStatus(404);
@@ -61,7 +61,7 @@ public class AccountOwnerServlet extends HttpServlet implements Authable {
             return;
         }
 
-        List<Trainer> trainers = trainerServices.readAll();
+        List<AccountOwner> accountowner = accountownerServices.readAll();
         String payload = mapper.writeValueAsString(trainers);
 
         resp.getWriter().write(payload);
