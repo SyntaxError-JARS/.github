@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.revature</groupId>
-    <artifactId>BanksofBanks</artifactId>
+    <artifactId>BankofBanks</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -22,12 +22,18 @@
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
                     <configuration>
-                        <url>http://localhost:8080/manager/text</url>
+                        <url>http://localhost:8080/manager/test/deploy</url>
                         <server>LocalTomcat</server>
-                        <path>/Banks-of-Banks</path>
+                        <path>/Bank-of-Banks</path>
                         <update>true</update>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.1</version>
+                </plugin>
+
             </plugins>
         </pluginManagement>
     </build>

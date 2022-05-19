@@ -58,12 +58,12 @@ public class ConnectionFactory {
         // String url = "jdbc:postgresql://localhost:5432/postgres"; // default url will connect you to public
         // TODO: WE NEED TO FIX THIS
         // make sure currentSchema name lowercase
-//        String url = "jdbc:postgresql://localhost:5432/postgres?currentSchema=pokedex"; // default url will connect you to public
+        // String url = "jdbc:postgresql://localhost:5432/postgres?currentSchema=pokedex"; // default url will connect you to public
 //        String user = "postgres";
 //        String password = "password";
 
         try {
-            conn = DriverManager.getConnection(prop.getProperty("jdbc:postgresql://localhost:5432/postgres?currentSchema=BanksOfBanks"), prop.getProperty("postgres"), prop.getProperty("yatta"));
+            conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
         } catch (SQLException e) {
             e.printStackTrace();
         }

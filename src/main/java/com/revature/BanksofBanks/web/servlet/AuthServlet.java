@@ -33,7 +33,7 @@ public class AuthServlet extends HttpServlet {
             // Account Owner reqAccountOwner = mapper.readValue(req.getInputStream(), AccountOwner.class);
             LoginCreds loginCreds = mapper.readValue(req.getInputStream(), LoginCreds.class);
 
-            Owners authOwners = OwnersServices(loginCreds.getEmail(), loginCreds.getlast4Social());
+            Owners authOwners = OwnersServices(loginCreds.getEmail(), loginCreds.getLast4Social());
 
             HttpSession httpSession = req.getSession(true);
             Owners authenticateOwners = new Owners();

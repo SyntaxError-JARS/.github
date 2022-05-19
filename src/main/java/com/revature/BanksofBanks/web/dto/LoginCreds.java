@@ -3,7 +3,7 @@ package com.revature.BanksofBanks.web.dto;
 public class LoginCreds {
 
     private String email;
-    private String last4Social;
+    private Integer last4Social;
 
     // JACKSON REQUIRES A NO ARG CONSTRUCTOR
 
@@ -15,15 +15,8 @@ public class LoginCreds {
         this.email = email;
     }
 
-    public String getPassword() {
-        return last4Social;
-    }
+    public Integer getLast4Social() { return last4Social; }
 
-    public void setPassword(String password) {
-        this.last4Social = last4Social;
-    }
 
-    public Object getlast4Social() {
-        return null;
+    public void setLast4Social() { this.last4Social = last4Social; }
     }
-}
