@@ -1,4 +1,4 @@
-package com.revature.BanksofBanks.exceptions.models;
+package com.revature.BanksofBanks.models;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 

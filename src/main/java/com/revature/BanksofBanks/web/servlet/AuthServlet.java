@@ -3,7 +3,7 @@ package com.revature.BanksofBanks.web.servlet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.BanksofBanks.exceptions.AuthenticationException;
 import com.revature.BanksofBanks.exceptions.InvalidRequestException;
-import com.revature.BanksofBanks.exceptions.models.Owners;
+import com.revature.BanksofBanks.models.Owners;
 import com.revature.BanksofBanks.services.OwnersServices;
 import com.revature.BanksofBanks.web.dto.LoginCreds;
 
@@ -15,12 +15,13 @@ import java.io.IOException;
 
 // @WebServlet("/auth") // this requires a default No-Args constructor
 public class AuthServlet extends HttpServlet {
-    private final ownersServices OwnersServices;
+    private final OwnersServices ownersServices;
     // ObjectMapper provided by jackson
     private final ObjectMapper mapper;
+    private Object OwnersServices = null;
 
     public AuthServlet(OwnersServices OwnersServices, ObjectMapper mapper){
-        this.ownersServices = ownersServices;
+        this.ownersServices = OwnersServices;
         this.mapper = mapper;
     }
 
@@ -32,10 +33,11 @@ public class AuthServlet extends HttpServlet {
             // Account Owner reqAccountOwner = mapper.readValue(req.getInputStream(), AccountOwner.class);
             LoginCreds loginCreds = mapper.readValue(req.getInputStream(), LoginCreds.class);
 
-            Owners authOwners = OwnersServices.authenticateOwners(loginCreds.getEmail(), loginCreds.getlast4Social());
+            Owners authOwners = OwnersServices(loginCreds.getEmail(), loginCreds.getlast4Social());
 
             HttpSession httpSession = req.getSession(true);
-            httpSession.setAttribute("authOwners", authOwners);
+            Owners authenticateOwners = new Owners();
+            httpSession.setAttribute("authenticateOwners", authenticateOwners);
 
             resp.getWriter().write("You have successfully logged in!");
         } catch (AuthenticationException | InvalidRequestException e){
@@ -45,5 +47,9 @@ public class AuthServlet extends HttpServlet {
             resp.setStatus(500);
             resp.getWriter().write(e.getMessage());
         }
+    }
+
+    private Owners OwnersServices(String email, Object getlast4Social) {
+        return null;
     }
 }

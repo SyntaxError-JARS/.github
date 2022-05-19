@@ -1,6 +1,7 @@
 package com.revature.BanksofBanks.daos;
 
-import com.revature.BanksofBanks.exceptions.models.Owners;
+import com.revature.BanksofBanks.models.Accounts;
+import com.revature.BanksofBanks.models.Owners;
 import com.revature.BanksofBanks.util.ConnectionFactory;
 
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.sql.*;
 import static com.revature.BanksofBanks.util.ConnectionFactory.connectionFactory;
 
 public class OwnersDao implements Crudable<Owners> {
+
     @Override
     public Owners create(Owners newOwners) {
         System.out.println("Here is the newOwners as it enters our DAO layer: " + newOwners); // What happens here? Java knows to invoke the toString() method when printing the object to the terminal
@@ -46,6 +48,12 @@ public class OwnersDao implements Crudable<Owners> {
         }
         return newOwners;
     }
+
+    @Override
+    public Accounts create(Accounts newAccounts) {
+        return null;
+    }
+
 
     @Override
     public Owners[] findAll() throws IOException {
@@ -88,7 +96,7 @@ public class OwnersDao implements Crudable<Owners> {
 
 
         System.out.println("Returning owners information to user.");
-        return new Owners[]{owners};
+        return new Owners[]{null};
     }
 
     @Override
@@ -131,6 +139,16 @@ public class OwnersDao implements Crudable<Owners> {
             return null;
         }
 
+    }
+
+    @Override
+    public Owners findById(int accountId) {
+        return null;
+    }
+
+    @Override
+    public boolean update(Accounts updatedObj) {
+        return false;
     }
 
     @Override

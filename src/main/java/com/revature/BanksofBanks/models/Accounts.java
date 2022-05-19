@@ -1,4 +1,4 @@
-package com.revature.BanksofBanks.exceptions.models;
+package com.revature.BanksofBanks.models;
 
 public class Accounts {
     private int accountId;
@@ -15,6 +15,10 @@ public class Accounts {
         this.currentBalance = currentBalance;
         this.email = email;
 
+    }
+
+    public Accounts() {
+        
     }
 
     public int getaccountId(){
@@ -49,6 +53,9 @@ public class Accounts {
                 ", currentBalance='" + currentBalance + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public static void setaccountId(int accountId) {
     }
 }
 

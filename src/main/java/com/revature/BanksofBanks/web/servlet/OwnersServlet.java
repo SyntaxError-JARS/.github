@@ -2,6 +2,8 @@ package com.revature.BanksofBanks.web.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.BanksofBanks.exceptions.ResourcePersistanceException;
+import com.revature.BanksofBanks.models.Owners;
+import com.revature.BanksofBanks.services.AccountsServices;
 import com.revature.BanksofBanks.services.OwnersServices;
 import com.revature.BanksofBanks.util.logging.Logger;
 
@@ -12,13 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.revature.BanksofBanks.web.servlet.Authable.checkAuth;
-
 // @WebServlet("/trainers")
 
 
 
-public class OwnersServlet extends HttpServlet implements Authable {
+public class OwnersServlet extends HttpServlet {
     private final OwnersServices OwnersServices;
     private final ObjectMapper mapper;
     private final Logger logger = Logger.getLogger();
@@ -45,10 +45,11 @@ public class OwnersServlet extends HttpServlet implements Authable {
         }
 
         // Handling the query params in the endpoint /acountowner?id=x
+        AccountsServices ownersServices;
         if(req.getParameter("email") != null){
             Owners owners;
             try {
-                owners = ownersServices.readByEmail(req.getParameter("email")); // EVERY PARAMETER RETURN FROM A URL IS A STRING
+                owners = OwnersServices.readByEmail(req.getParameter("email")); // EVERY PARAMETER RETURN FROM A URL IS A STRING
             } catch (ResourcePersistanceException e){
                 logger.warn(e.getMessage());
                 resp.setStatus(404);
@@ -60,7 +61,7 @@ public class OwnersServlet extends HttpServlet implements Authable {
             return;
         }
 
-        List<owners> owners = ownersServices.readAll();
+        List<Owners> owners = OwnersServices.readAll();
         String payload = mapper.writeValueAsString(owners);
 
         resp.getWriter().write(payload);

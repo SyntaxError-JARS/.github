@@ -1,12 +1,12 @@
 package com.revature.BanksofBanks.services;
-
 import com.revature.BanksofBanks.daos.OwnersDao;
-import com.revature.BanksofBanks.exceptions.models.Owners;
+import com.revature.BanksofBanks.models.Owners;
 
 import java.io.IOException;
+import java.util.List;
 
 public class OwnersServices {
-    private com.revature.BanksofBanks.daos.OwnersDao OwnersDao = new OwnersDao();
+    private final com.revature.BanksofBanks.daos.OwnersDao OwnersDao = new OwnersDao();
 
     public OwnersServices(OwnersDao ownersDao) {
 
@@ -33,22 +33,22 @@ public class OwnersServices {
             // new AccountOwner() is instantiating a new accountowner object via the No-Args Constructor
             //Owners owners = new Owners();
 
-            // TODO: Why is this declared as an Object and not a AccountOwner??
-            Object owner1 = new owners("Charles", "Jester", "cj@mail.com", "p", "1111");
+            // TODO: Why is this declared as an Object and not a Owners??
+            //Object owner1 = new owners("Charles", "Jester", "cj@mail.com", "p", "1111");
 
-            owners iCanNameThisWhatEverTheHeckoIWant = new owners();
-            System.out.println(iCanNameThisWhatEverTheHeckoIWant.getLname());
+            //Object owner2 = new owners();
+            //System.out.println(iCanNameThisWhatEverTheHeckoIWant.getLname());
 
             System.out.println(" ----------THIS THINGGGGGGGG--------------- ");
-            System.out.println(owner1.toString());
+            //System.out.println(owner1.toString());
             System.out.println("-------------------------");
             // the (AccountOwner) is casting the Object accountowner1 in java's Heap Memory to view as an AccountOwner object instead
-            System.out.println(((Owners) owners).getFname());
+           // System.out.println(((owners) owners).getFname());
 
             // forEach
-            for(owners t:owners ){
+            for(Owners t:owners ){
                 if(owners != null) {
-                    System.out.println((Owners) owners); // account owner indicates a single element in the accountowners array
+               //     System.out.println((owners) owners); // account owner indicates a single element in the accountowners array
                 }
             }
 
@@ -103,5 +103,13 @@ public class OwnersServices {
             newtOwners.getlast4Social();
         }
         return true;
+    }
+
+    public Owners readByEmail(String email) {
+        return null;
+    }
+
+    public List<Owners> readAll() {
+        return null;
     }
 }

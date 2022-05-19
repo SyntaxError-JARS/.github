@@ -22,4 +22,8 @@ public class LoginCreds {
     public void setPassword(String password) {
         this.last4Social = last4Social;
     }
+
+    public Object getlast4Social() {
+        return null;
+    }
 }

@@ -1,7 +1,7 @@
 package com.revature.BanksofBanks.web.servlet;
 
-//import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.BanksofBanks.exceptions.models.Accounts;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.BanksofBanks.models.Accounts;
 import com.revature.BanksofBanks.services.AccountsServices;
 
 import javax.servlet.ServletException;
@@ -57,13 +57,13 @@ public class AccountsServlet extends HttpServlet implements Authable {
 
     @Override
     public void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    //update
 
     }
 
     @Override
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    //create
 
     }
 
