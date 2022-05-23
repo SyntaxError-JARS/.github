@@ -6,14 +6,6 @@
 
     <display-name>Welcome to the Banks of Banks Servlet!!</display-name>
 
-    <servlet>
-        <servlet-name>TestServlet</servlet-name>
-        <servlet-class>com.revature.BanksofBanks.web.servlet.TestServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>TestServlet</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
 
 </web-app>
+
